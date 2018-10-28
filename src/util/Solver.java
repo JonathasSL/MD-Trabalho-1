@@ -3,7 +3,6 @@ package util;
 import proposicao.Argumento;
 import proposicao.ArgumentoComposto;
 import proposicao.ArgumentoSimples;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,6 +13,7 @@ public class Solver {
 
     public Solver(){
         respostas = new HashMap<>();
+        argumentos = new ArrayList<>();
         proposicoes = new ArrayList<>();
         proposicoes.add("p");
         proposicoes.add("q");
@@ -55,9 +55,9 @@ public class Solver {
 
         while (i < s.length && !s[i].equals(")")) {
 
-            //Iterar até fechar o parênteses ou acabar o texto
+            //Iterar ate fechar o parenteses ou acabar o texto
             if (s[i].equals("(")) {
-                //Quando abrir parênteses, fazer chamada recursiva que resolverá este parênteses
+                //Quando abrir parenteses, fazer chamada recursiva que resolvera este parênteses
                 //E então aqui ir para a posição em que ele acaba
                 Object[] o = resolverParenteses(i, texto);
                 i = (int) o[0];
@@ -92,23 +92,23 @@ public class Solver {
                             not = true;
                             break;
 
-                        case "∧":
+                        case "and":
                             ultimoConectivo = Argumento.E;
                             break;
 
-                        case "∨":
+                        case "or":
                             ultimoConectivo = Argumento.OU;
                             break;
 
-                        case "⊻":
+                        case "xor":
                             ultimoConectivo = Argumento.OU_OU;
                             break;
 
-                        case "→":
+                        case "if_then":
                             ultimoConectivo = Argumento.SE_ENTAO;
                             break;
 
-                        case "↔":
+                        case "only_if":
                             ultimoConectivo = Argumento.SE_E_SOMENTE_SE;
                             break;
                     }

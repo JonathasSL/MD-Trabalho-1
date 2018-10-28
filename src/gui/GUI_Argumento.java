@@ -104,7 +104,7 @@ public class GUI_Argumento extends JFrame{
         });
 
 
-        disj_btn.setText("∨");
+        disj_btn.setText("or");
         disj_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 disj_btnActionPerformed(evt);
@@ -119,7 +119,7 @@ public class GUI_Argumento extends JFrame{
             }
         });
 
-        imp_btn.setText("→");
+        imp_btn.setText("if_then");
         imp_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imp_btnActionPerformed(evt);
@@ -127,7 +127,7 @@ public class GUI_Argumento extends JFrame{
         });
 
 
-        conj_btn.setText("∧");
+        conj_btn.setText("and");
         conj_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 conj_btnActionPerformed(evt);
@@ -135,14 +135,14 @@ public class GUI_Argumento extends JFrame{
         });
 
 
-        disjXclusive_btn.setText("⊻");
+        disjXclusive_btn.setText("xor");
         disjXclusive_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 disjXclusive_btnActionPerformed(evt);
             }
         });
 
-        equiv_btn.setText("↔");
+        equiv_btn.setText("only_if");
         equiv_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equiv_btnActionPerformed(evt);
@@ -373,7 +373,7 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" ∨");
+        arg_textfield.setText(text+" or");
     }
     private void conj_btnActionPerformed(java.awt.event.ActionEvent evt) {
         disableConectivos();
@@ -382,7 +382,7 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" ∧");
+        arg_textfield.setText(text+" and");
     }
 
     private void disjXclusive_btnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,7 +392,7 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" ⊻");
+        arg_textfield.setText(text+" xor");
     }
 
     private void imp_btnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,7 +402,7 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" →");
+        arg_textfield.setText(text+" if_then");
     }
 
     private void equiv_btnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,7 +412,7 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" ↔");
+        arg_textfield.setText(text+" only_if");
     }
 
     //Diversos
@@ -491,7 +491,12 @@ public class GUI_Argumento extends JFrame{
         System.out.println();
 
         for(String arg : s.argumentos){
-            System.out.println(arg);
+            System.out.print(arg + ": ");
+            for(boolean b : s.respostas.get(arg)){
+                System.out.print(b + ", ");
+            }
+            System.out.println();
+            System.out.println();
         }
 
     }

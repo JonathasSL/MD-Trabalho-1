@@ -1,15 +1,17 @@
 package util;
 
 public enum Conectivo {
-    NAO('~'), E('∧'), OU('∨'), OU_OU('⊻'), IMPLICACAO('→'), EQUIVALENCIA('↔'), UNDEFINED();
+    E(""), OU(""), OU_OU(""), SE_ENTAO(""), SE_SOMENTE_SE("");
 
-    public char simbolo;
+    private String simbolo;
 
-    Conectivo(char simbolo){
+    Conectivo(String simbolo) {
         this.simbolo = simbolo;
     }
 
-    Conectivo(){
-        this('0');
+    @Override
+    public String toString() {
+        return simbolo;
     }
+
 }

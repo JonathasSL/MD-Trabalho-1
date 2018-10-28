@@ -35,26 +35,26 @@ public class ArgumentoComposto extends Argumento {
                 conec = "~";
                 break;
             case E:
-                conec = "∧";
+                conec = "and";
                 break;
             case OU:
-                conec = "∨";
+                conec = "or";
                 break;
             case OU_OU:
-                conec = "⊻";
+                conec = "xor";
                 break;
             case SE_ENTAO:
-                conec = "→";
+                conec = "if_then";
                 break;
             case SE_E_SOMENTE_SE:
-                conec = "↔";
+                conec = "only_if";
                 break;
             default:
                 conec = null;
                 break;
         }
-        if (not) return "~ ( " + a + " " + conec + " " + b + " )";
-        else return "( " + a + " " + conec + " " + b + " )";
+        if (not) return "~(" + a + conec + b + ")";
+        else return "(" + a + conec + b + ")";
     }
 
     @Override
@@ -121,7 +121,7 @@ public class ArgumentoComposto extends Argumento {
         respostas.put(this.toString(), resposta);
 
         Solver.respostas.put(this.toString(), resposta);
-        Solver.argumentos.add(this.a+this.conectivo+this.b);
+        Solver.argumentos.add(this.toString());
         return resposta;
     }
 
