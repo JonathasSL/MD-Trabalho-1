@@ -3,24 +3,24 @@ package proposicao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ProposicaoComposta extends Proposicao {
+public class ArgumentoComposto extends Argumento {
 
-    protected Proposicao a = null, b = null;
+    protected Argumento a = null, b = null;
     protected int conectivo;
 
 
-    public ProposicaoComposta(Proposicao a, Proposicao b, int conectivo) {
+    public ArgumentoComposto(Argumento a, Argumento b, int conectivo) {
         super();
         this.a = a;
         this.b = b;
         this.conectivo = conectivo;
     }
 
-    public ProposicaoComposta(ProposicaoComposta p, boolean not) {
+    public ArgumentoComposto(ArgumentoComposto p, boolean not) {
         this(p.a, p.b, p.conectivo, not);
     }
 
-    public ProposicaoComposta(Proposicao a, Proposicao b, int conectivo, boolean not) {
+    public ArgumentoComposto(Argumento a, Argumento b, int conectivo, boolean not) {
         this(a, b, conectivo);
         this.not = not;
     }
@@ -57,8 +57,8 @@ public class ProposicaoComposta extends Proposicao {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ProposicaoComposta) {
-            ProposicaoComposta p = (ProposicaoComposta) o;
+        if (o instanceof ArgumentoComposto) {
+            ArgumentoComposto p = (ArgumentoComposto) o;
             if (p.a.equals(this.a) && p.b.equals(this.b) && p.conectivo == this.conectivo)
                 return true;
             else
@@ -108,19 +108,19 @@ public class ProposicaoComposta extends Proposicao {
     }
 
     public int getNumProposicoesSimples() {
-        ArrayList<ProposicaoSimples> proposicoesSimples = new ArrayList<>();
+        ArrayList<ArgumentoSimples> proposicoesSimples = new ArrayList<>();
         return getNumProposicoesSimples(a, proposicoesSimples) + getNumProposicoesSimples(b, proposicoesSimples);
     }
 
-    public int getNumProposicoesSimples(Proposicao p, ArrayList<ProposicaoSimples> proposicoesSimples) {
+    public int getNumProposicoesSimples(Argumento p, ArrayList<ArgumentoSimples> proposicoesSimples) {
         int num = 0;
         if (!proposicoesSimples.contains(p)) {
-            if (p instanceof ProposicaoSimples) {
+            if (p instanceof ArgumentoSimples) {
                 num += 1;
-                proposicoesSimples.add((ProposicaoSimples) p);
+                proposicoesSimples.add((ArgumentoSimples) p);
             }
             else if (p != null) {
-                ProposicaoComposta ps = (ProposicaoComposta) p;
+                ArgumentoComposto ps = (ArgumentoComposto) p;
                 if (ps.a != null) num += getNumProposicoesSimples(ps.a, proposicoesSimples);
                 if (ps.b != null) num += getNumProposicoesSimples(ps.b, proposicoesSimples);
             }
@@ -130,7 +130,7 @@ public class ProposicaoComposta extends Proposicao {
 
     @Override
     public Object clone() {
-        ProposicaoComposta p = new ProposicaoComposta(a, b, conectivo, not);
+        ArgumentoComposto p = new ArgumentoComposto(a, b, conectivo, not);
         return p;
     }
 

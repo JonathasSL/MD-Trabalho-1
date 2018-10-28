@@ -1,9 +1,8 @@
 package proposicao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class Proposicao {
+public abstract class Argumento {
 
     public static final int NAO=0, E=1, OU=2, OU_OU=3, SE_ENTAO=4, SE_E_SOMENTE_SE=5;
     protected static int numSimples = 0;
@@ -12,8 +11,8 @@ public abstract class Proposicao {
 
     public static void clear(){ numSimples = 0; }
 
-    public Proposicao negado() {
-        Proposicao p = (Proposicao) this.clone();
+    public Argumento negado() {
+        Argumento p = (Argumento) this.clone();
         p.not = !p.not;
         return p;
     }

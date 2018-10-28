@@ -2,17 +2,17 @@ package proposicao;
 
 import java.util.HashMap;
 
-public class ProposicaoSimples extends Proposicao {
+public class ArgumentoSimples extends Argumento {
 
     private int id = 0;
     private char p;
 
-    public ProposicaoSimples(char p) {
+    public ArgumentoSimples(char p) {
         super();
         this.p = p;
     }
 
-    public ProposicaoSimples(char p, boolean not) {
+    public ArgumentoSimples(char p, boolean not) {
         this(p);
         this.not = not;
     }
@@ -28,8 +28,8 @@ public class ProposicaoSimples extends Proposicao {
     @Override
     public boolean equals(Object o) {
         boolean equals=false;
-        if (o instanceof ProposicaoSimples) {
-            if (((ProposicaoSimples) o).p == this.p)
+        if (o instanceof ArgumentoSimples) {
+            if (((ArgumentoSimples) o).p == this.p)
                 equals = true;
         }
 
@@ -71,7 +71,7 @@ public class ProposicaoSimples extends Proposicao {
 
     @Override
     public Object clone() {
-        ProposicaoSimples p = new ProposicaoSimples(this.p, this.not);
+        ArgumentoSimples p = new ArgumentoSimples(this.p, this.not);
         return p;
     }
 

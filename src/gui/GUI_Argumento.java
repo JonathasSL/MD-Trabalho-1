@@ -161,7 +161,7 @@ public class GUI_Argumento extends JFrame{
         jLabel1.setText("Conectivos");
 
         arg_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        arg_label.setText("proposicao");
+        arg_label.setText("Argumento");
 
         prop_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         prop_label.setText("Proposições");
