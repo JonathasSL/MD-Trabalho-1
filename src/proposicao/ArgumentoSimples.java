@@ -1,5 +1,7 @@
 package proposicao;
 
+import util.Solver;
+
 import java.util.HashMap;
 
 public class ArgumentoSimples extends Argumento {
@@ -54,11 +56,13 @@ public class ArgumentoSimples extends Argumento {
         boolean[] b = new boolean[(int) Math.pow(2, numProposicoesSimples)];
         int numConsecutivos = b.length / (int) (Math.pow(2, id));
         int j = 0;
+
         for (int i = 0; i < (b.length / numConsecutivos) / 2; i++) {
             for (int k = j; k < j + numConsecutivos; k++)
                 b[k] = !not;
 
             j += numConsecutivos;
+
             for (int k = j; k < j + numConsecutivos; k++)
                 b[k] = not;
 
@@ -66,6 +70,9 @@ public class ArgumentoSimples extends Argumento {
         }
         this.resposta = b;
         respostas.put(this.toString(), b);
+
+        Solver.respostas.put(this.toString(), b);
+        Solver.argumentos.add(this.toString());
         return b;
     }
 

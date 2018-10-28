@@ -1,12 +1,14 @@
 package proposicao;
 
+import util.Solver;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ArgumentoComposto extends Argumento {
 
-    protected Argumento a = null, b = null;
-    protected int conectivo;
+    public Argumento a = null, b = null;
+    public int conectivo;
 
 
     public ArgumentoComposto(Argumento a, Argumento b, int conectivo) {
@@ -87,23 +89,39 @@ public class ArgumentoComposto extends Argumento {
         boolean[] b = this.b.resolver(numProposicoesSimples, respostas);
         boolean[] resposta = new boolean[a.length];
 
-        if (conectivo == E)
-            for (int i = 0; i < a.length; i++)
-                resposta[i] = a[i] && b[i];
-        else if (conectivo == OU)
-            for (int i = 0; i < a.length; i++)
-                resposta[i] = a[i] || b[i];
-        else if (conectivo == OU_OU)
-            for (int i = 0; i < a.length; i++)
-                resposta[i] = a[i] ^ b[i];
-        else if (conectivo == SE_ENTAO)
-            for (int i = 0; i < a.length; i++)
-                resposta[i] = !((a[i]) && (!b[i]));
-        else if (conectivo == SE_E_SOMENTE_SE)
-            for (int i = 0; i < a.length; i++)
-                resposta[i] = a[i] == b[i];
+        switch(conectivo){
+            case E:
+                for (int i = 0; i < a.length; i++)
+                    resposta[i] = a[i] && b[i];
+                break;
+
+            case OU:
+                for (int i = 0; i < a.length; i++)
+                    resposta[i] = a[i] || b[i];
+                break;
+
+            case OU_OU:
+                for (int i = 0; i < a.length; i++)
+                    resposta[i] = a[i] ^ b[i];
+                break;
+
+            case SE_ENTAO:
+                for (int i = 0; i < a.length; i++)
+                    resposta[i] = !((a[i]) && (!b[i]));
+                break;
+
+            case SE_E_SOMENTE_SE:
+                for (int i = 0; i < a.length; i++)
+                    resposta[i] = a[i] == b[i];
+                break;
+
+
+        }
         super.resposta = resposta;
         respostas.put(this.toString(), resposta);
+
+        Solver.respostas.put(this.toString(), resposta);
+        Solver.argumentos.add(this.a+this.conectivo+this.b);
         return resposta;
     }
 

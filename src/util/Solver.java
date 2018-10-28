@@ -5,12 +5,15 @@ import proposicao.ArgumentoComposto;
 import proposicao.ArgumentoSimples;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Solver {
     public static ArrayList<String> proposicoes = new ArrayList<>();
+    public static HashMap<String, boolean[]> respostas = new HashMap<>();
+    public static ArrayList<String> argumentos = new ArrayList<>();
 
     public Solver(){
-
+        respostas = new HashMap<>();
         proposicoes = new ArrayList<>();
         proposicoes.add("p");
         proposicoes.add("q");
@@ -49,7 +52,9 @@ public class Solver {
         int i = inicio + 1, ultimoConectivo = -1;
         boolean not = false;
         String[] s = texto.split(" ");
+
         while (i < s.length && !s[i].equals(")")) {
+
             //Iterar até fechar o parênteses ou acabar o texto
             if (s[i].equals("(")) {
                 //Quando abrir parênteses, fazer chamada recursiva que resolverá este parênteses
@@ -70,41 +75,43 @@ public class Solver {
                 not = false;
                 acumulador = null;
                 continue;
-            }
+            }else {
 
-            //verifica se eh argumento
-            if (proposicoes.contains(s[i]) && !s[i].equals("(")) {
+                //verifica se eh uma proposicao
+                if (proposicoes.contains(s[i])) {
 
-                Argumento prop = new ArgumentoSimples(s[i].charAt(0), not);
-                if (acumulador != null) acumulador = new ArgumentoComposto(acumulador, prop, ultimoConectivo, false);
-                else acumulador = prop;
-                not = false;
-            }
-            else {
-                switch (s[i]) {
-                    case "~":
-                        not = true;
-                        break;
-                    case "∧":
-                        ultimoConectivo = Argumento.E;
-                        not = false;
-                        break;
-                    case "∨":
-                        ultimoConectivo = Argumento.OU;
-                        not = false;
-                        break;
-                    case "⊻":
-                        ultimoConectivo = Argumento.OU_OU;
-                        not = false;
-                        break;
-                    case "→":
-                        ultimoConectivo = Argumento.SE_ENTAO;
-                        not = false;
-                        break;
-                    case "↔":
-                        ultimoConectivo = Argumento.SE_E_SOMENTE_SE;
-                        not = false;
-                        break;
+                    Argumento prop = new ArgumentoSimples(s[i].charAt(0), not);
+                    if (acumulador != null)
+                        acumulador = new ArgumentoComposto(acumulador, prop, ultimoConectivo, false);
+                    else acumulador = prop;
+                    not = false;
+                } else {
+                    not = false;
+                    switch (s[i]) {
+                        case "~":
+                            not = true;
+                            break;
+
+                        case "∧":
+                            ultimoConectivo = Argumento.E;
+                            break;
+
+                        case "∨":
+                            ultimoConectivo = Argumento.OU;
+                            break;
+
+                        case "⊻":
+                            ultimoConectivo = Argumento.OU_OU;
+                            break;
+
+                        case "→":
+                            ultimoConectivo = Argumento.SE_ENTAO;
+                            break;
+
+                        case "↔":
+                            ultimoConectivo = Argumento.SE_E_SOMENTE_SE;
+                            break;
+                    }
                 }
             }
             i++;
@@ -116,6 +123,7 @@ public class Solver {
             else
                 argumento = acumulador;
         }
+
         //Retorna a posição em que o parênteses acaba, e a proposição encontrada
         return new Object[] { i + 1, argumento};
     }

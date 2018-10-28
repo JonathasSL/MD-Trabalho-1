@@ -309,6 +309,8 @@ public class GUI_Argumento extends JFrame{
         String text = arg_textfield.getText();
         arg_textfield.setText(text+" )");
 
+        if(num_parenteses == 0) exec_btn.setEnabled(true);
+
     }
 
     private void p_btnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,7 +373,6 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        //arg_textfield.setText(text+" or");
         arg_textfield.setText(text+" ∨");
     }
     private void conj_btnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -381,7 +382,6 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        //arg_textfield.setText(text+" and");
         arg_textfield.setText(text+" ∧");
     }
 
@@ -392,7 +392,6 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        //arg_textfield.setText(text+" xor");
         arg_textfield.setText(text+" ⊻");
     }
 
@@ -403,7 +402,6 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        //arg_textfield.setText(text+" then");
         arg_textfield.setText(text+" →");
     }
 
@@ -414,7 +412,6 @@ public class GUI_Argumento extends JFrame{
         apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        //arg_textfield.setText(text+" thenthen");
         arg_textfield.setText(text+" ↔");
     }
 
@@ -486,10 +483,16 @@ public class GUI_Argumento extends JFrame{
         arg_textfield.setText("");
         Solver.clear();
 
-        System.out.println(argumento);
         enableProposicoes();
         disableConectivos();
         not_btn.setEnabled(true);
+
+        System.out.println();
+        System.out.println();
+
+        for(String arg : s.argumentos){
+            System.out.println(arg);
+        }
 
     }
 
