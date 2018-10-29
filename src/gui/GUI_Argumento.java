@@ -29,7 +29,7 @@ public class GUI_Argumento extends JFrame{
     private javax.swing.JButton r_btn;
     private javax.swing.JButton t_btn;
     private int num_parenteses=0;
-    private String argumento = "(";
+    public static String argumento = "(";
 
     public static ArrayList<Character> PROPOSICOES;
     public static ArrayList<Boolean> CONECTIVOS;
@@ -499,6 +499,11 @@ public class GUI_Argumento extends JFrame{
             System.out.println();
         }
 
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GUI_Tabela().setVisible(true);
+            }
+        });
     }
 
     private void enableConectivos(){

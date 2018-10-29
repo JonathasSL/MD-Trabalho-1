@@ -1,5 +1,7 @@
 package gui;
 
+import util.Solver;
+
 public class GUI_Tabela  extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela_verdade;
@@ -25,21 +27,8 @@ public class GUI_Tabela  extends javax.swing.JFrame {
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
             tabela_verdade.setAlignmentX(tabela_verdade.CENTER_ALIGNMENT);
-            tabela_verdade.setModel(new javax.swing.table.DefaultTableModel(
-                    new Object [][] {
-                            {true , true , true , false, false, true },
-                            {true , true , true , true , true , false},
-                            {true , true , false, false, false, true },
-                            {true , true , false, true , true , false},
-                            {false, true , true , false, false, true },
-                            {false, true , true , true , true , false},
-                            {false, false, false, true , false, true },
-                            {false, false, false, true , true , false}
-                    },
-                    new String [] {
-                            "(p", "∨", "q)", "→", "~", "r"
-                    }
-            ));
+
+            this.geraTabela();
             tabela_verdade.setAutoscrolls(false);
             jScrollPane1.setViewportView(tabela_verdade);
             tabela_verdade.getAccessibleContext().setAccessibleDescription("");
@@ -63,35 +52,20 @@ public class GUI_Tabela  extends javax.swing.JFrame {
 
             pack();
         }// </editor-fold>
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI_Tabela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI_Tabela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI_Tabela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI_Tabela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUI_Tabela().setVisible(true);
-            }
-        });
+    public void geraTabela(){
+
+        Object[][] resp = new Object[Solver.respostaFinal.length][1];
+
+        for (int i = 0; i < Solver.respostaFinal.length; i++) {
+            resp[i][0] = Solver.respostaFinal[i];
+        }
+
+        tabela_verdade.setModel(new javax.swing.table.DefaultTableModel(
+                resp,
+                new String [] {
+                        GUI_Argumento.argumento
+                }
+        ));
     }
 }

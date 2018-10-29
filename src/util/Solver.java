@@ -10,6 +10,7 @@ public class Solver {
     public static ArrayList<String> proposicoes = new ArrayList<>();
     public static HashMap<String, boolean[]> respostas = new HashMap<>();
     public static ArrayList<String> argumentos = new ArrayList<>();
+    public static boolean[] respostaFinal = {};
 
     public Solver(){
         respostas = new HashMap<>();
@@ -34,8 +35,8 @@ public class Solver {
         }
         else b = new boolean[] { };
         System.out.println(argumento);
-        for (boolean a : b)
-            System.out.print(a + ", ");
+
+        this.respostaFinal = b;
     }
 
     public static void clear() {
@@ -55,10 +56,8 @@ public class Solver {
 
         while (i < s.length && !s[i].equals(")")) {
 
-            //Iterar ate fechar o parenteses ou acabar o texto
             if (s[i].equals("(")) {
-                //Quando abrir parenteses, fazer chamada recursiva que resolvera este parênteses
-                //E então aqui ir para a posição em que ele acaba
+
                 Object[] o = resolverParenteses(i, texto);
                 i = (int) o[0];
                 Argumento prop = (Argumento) o[1];
@@ -74,7 +73,6 @@ public class Solver {
                 }
                 not = false;
                 acumulador = null;
-                continue;
             }else {
 
                 //verifica se eh uma proposicao
@@ -113,8 +111,8 @@ public class Solver {
                             break;
                     }
                 }
+                i++;
             }
-            i++;
         }
 
         if (acumulador != null){
