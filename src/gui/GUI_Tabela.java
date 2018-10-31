@@ -82,7 +82,6 @@ public class GUI_Tabela  extends javax.swing.JFrame {
                         if(key.not){
                             resp_nova = nega_array(resp_nova);
                         }
-                        
                         for (int j = 0; j < resp.length; j++) {
 
                             if(resp[j][il] == null){
