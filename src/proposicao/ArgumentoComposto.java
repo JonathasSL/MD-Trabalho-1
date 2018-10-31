@@ -120,8 +120,8 @@ public class ArgumentoComposto extends Argumento {
         super.resposta = resposta;
         respostas.put(this.toString(), resposta);
 
-        Solver.respostas.put(this.toString(), resposta);
-        Solver.argumentos.add(this.toString());
+        Solver.respostas.put(this, resposta);
+        Solver.argumentos.add(this);
         return resposta;
     }
 
@@ -152,4 +152,31 @@ public class ArgumentoComposto extends Argumento {
         return p;
     }
 
+    public String getConec(){
+        String conec;
+        switch (conectivo) {
+            case NAO:
+                conec = "~";
+                break;
+            case E:
+                conec = "and";
+                break;
+            case OU:
+                conec = "or";
+                break;
+            case OU_OU:
+                conec = "xor";
+                break;
+            case SE_ENTAO:
+                conec = "if_then";
+                break;
+            case SE_E_SOMENTE_SE:
+                conec = "only_if";
+                break;
+            default:
+                conec = null;
+                break;
+        }
+        return conec;
+    }
 }

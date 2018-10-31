@@ -8,6 +8,7 @@ public abstract class Argumento {
     protected static int numSimples = 0;
     protected boolean[] resposta = null;
     public boolean not = false;
+    public int pos;
 
     public static void clear(){ numSimples = 0; }
 
@@ -25,5 +26,6 @@ public abstract class Argumento {
     @Override public abstract boolean equals(Object o);
     @Override public abstract Object clone();
     public abstract boolean[] resolver(int numProposicoesSimples, HashMap<String, boolean[]> respostas);
+
 
 }

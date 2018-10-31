@@ -71,8 +71,8 @@ public class ArgumentoSimples extends Argumento {
         this.resposta = b;
         respostas.put(this.toString(), b);
 
-        Solver.respostas.put(this.toString(), b);
-        Solver.argumentos.add(this.toString());
+        Solver.respostas.put(this, b);
+        Solver.argumentos.add(this);
         return b;
     }
 
@@ -82,4 +82,7 @@ public class ArgumentoSimples extends Argumento {
         return p;
     }
 
+    public char getP() {
+        return p;
+    }
 }

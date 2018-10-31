@@ -5,11 +5,13 @@ import proposicao.ArgumentoComposto;
 import proposicao.ArgumentoSimples;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Solver {
     public static ArrayList<String> proposicoes = new ArrayList<>();
-    public static HashMap<String, boolean[]> respostas = new HashMap<>();
-    public static ArrayList<String> argumentos = new ArrayList<>();
+    public static Map<Argumento, boolean[]> respostas = new HashMap<>();
+    public static List<Argumento> argumentos = new ArrayList<>();
     public static boolean[] respostaFinal = {};
 
     public Solver(){

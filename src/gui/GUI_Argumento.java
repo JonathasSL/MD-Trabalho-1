@@ -1,5 +1,6 @@
 package gui;
 
+import proposicao.Argumento;
 import util.Solver;
 
 import javax.swing.*;
@@ -490,7 +491,7 @@ public class GUI_Argumento extends JFrame{
         System.out.println();
         System.out.println();
 
-        for(String arg : s.argumentos){
+        for(Argumento arg : s.argumentos){
             System.out.print(arg + ": ");
             for(boolean b : s.respostas.get(arg)){
                 System.out.print(b + ", ");
