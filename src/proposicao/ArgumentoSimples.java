@@ -21,10 +21,13 @@ public class ArgumentoSimples extends Argumento {
 
     @Override
     public String toString() {
+        String arg;
         if (not)
-            return "~(" + p + ")";
+            arg = "~(" + p + ")";
         else
-            return "(" + p + ")";
+            arg ="(" + p + ")";
+
+        return arg;
     }
 
     @Override

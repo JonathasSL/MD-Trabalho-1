@@ -1,5 +1,6 @@
 package proposicao;
 
+import util.Conectivo;
 import util.Solver;
 
 import java.util.ArrayList;
@@ -29,30 +30,7 @@ public class ArgumentoComposto extends Argumento {
 
     @Override
     public String toString() {
-        String conec;
-        switch (conectivo) {
-            case NAO:
-                conec = "~";
-                break;
-            case E:
-                conec = "and";
-                break;
-            case OU:
-                conec = "or";
-                break;
-            case OU_OU:
-                conec = "xor";
-                break;
-            case SE_ENTAO:
-                conec = "if_then";
-                break;
-            case SE_E_SOMENTE_SE:
-                conec = "only_if";
-                break;
-            default:
-                conec = null;
-                break;
-        }
+        String conec = getConec();
         if (not) return "~(" + a + conec + b + ")";
         else return "(" + a + conec + b + ")";
     }
@@ -159,19 +137,19 @@ public class ArgumentoComposto extends Argumento {
                 conec = "~";
                 break;
             case E:
-                conec = "and";
+                conec = Conectivo.CONJUNCAO.toString();
                 break;
             case OU:
-                conec = "or";
+                conec = Conectivo.DISJUNCAO.toString();
                 break;
             case OU_OU:
-                conec = "xor";
+                conec = Conectivo.DISJUNCAO_EXCLUSIVA.toString();
                 break;
             case SE_ENTAO:
-                conec = "if_then";
+                conec = Conectivo.IMPLICACAO.toString();
                 break;
             case SE_E_SOMENTE_SE:
-                conec = "only_if";
+                conec = Conectivo.EQUIVALENCIA.toString();
                 break;
             default:
                 conec = null;

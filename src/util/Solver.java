@@ -3,13 +3,11 @@ package util;
 import proposicao.Argumento;
 import proposicao.ArgumentoComposto;
 import proposicao.ArgumentoSimples;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class Solver {
-    public static ArrayList<String> proposicoes = new ArrayList<>();
+    public static List<String> proposicoes = Arrays.asList("p", "q", "r", "t");
     public static Map<Argumento, boolean[]> respostas = new HashMap<>();
     public static List<Argumento> argumentos = new ArrayList<>();
     public static boolean[] respostaFinal = {};
@@ -17,11 +15,6 @@ public class Solver {
     public Solver(){
         respostas = new HashMap<>();
         argumentos = new ArrayList<>();
-        proposicoes = new ArrayList<>();
-        proposicoes.add("p");
-        proposicoes.add("q");
-        proposicoes.add("r");
-        proposicoes.add("t");
     }
 
     public void solve(String text) {
@@ -92,23 +85,23 @@ public class Solver {
                             not = true;
                             break;
 
-                        case "and":
+                        case "∧":
                             ultimoConectivo = Argumento.E;
                             break;
 
-                        case "or":
+                        case "∨":
                             ultimoConectivo = Argumento.OU;
                             break;
 
-                        case "xor":
+                        case "⊻":
                             ultimoConectivo = Argumento.OU_OU;
                             break;
 
-                        case "if_then":
+                        case "→":
                             ultimoConectivo = Argumento.SE_ENTAO;
                             break;
 
-                        case "only_if":
+                        case "↔":
                             ultimoConectivo = Argumento.SE_E_SOMENTE_SE;
                             break;
                     }

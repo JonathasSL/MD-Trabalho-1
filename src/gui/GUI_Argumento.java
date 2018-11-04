@@ -1,6 +1,7 @@
 package gui;
 
 import proposicao.Argumento;
+import util.Conectivo;
 import util.Solver;
 
 import javax.swing.*;
@@ -105,7 +106,7 @@ public class GUI_Argumento extends JFrame{
         });
 
 
-        disj_btn.setText("or");
+        disj_btn.setText(Conectivo.DISJUNCAO.toString());
         disj_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 disj_btnActionPerformed(evt);
@@ -120,7 +121,7 @@ public class GUI_Argumento extends JFrame{
             }
         });
 
-        imp_btn.setText("if_then");
+        imp_btn.setText(Conectivo.IMPLICACAO.toString());
         imp_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imp_btnActionPerformed(evt);
@@ -128,7 +129,7 @@ public class GUI_Argumento extends JFrame{
         });
 
 
-        conj_btn.setText("and");
+        conj_btn.setText(Conectivo.CONJUNCAO.toString());
         conj_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 conj_btnActionPerformed(evt);
@@ -136,14 +137,14 @@ public class GUI_Argumento extends JFrame{
         });
 
 
-        disjXclusive_btn.setText("xor");
+        disjXclusive_btn.setText(Conectivo.DISJUNCAO_EXCLUSIVA.toString());
         disjXclusive_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 disjXclusive_btnActionPerformed(evt);
             }
         });
 
-        equiv_btn.setText("only_if");
+        equiv_btn.setText(Conectivo.EQUIVALENCIA.toString());
         equiv_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equiv_btnActionPerformed(evt);
@@ -188,9 +189,9 @@ public class GUI_Argumento extends JFrame{
             }
         });
         fechaParentese_btn.setEnabled(false);
-        disableConectivos();
-        apagar_btn.setEnabled(false);
-        exec_btn.setEnabled(false);
+        //disableConectivos();
+        //apagar_btn.setEnabled(false);
+        //exec_btn.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,7 +295,7 @@ public class GUI_Argumento extends JFrame{
 
     private void abreParentese_btnActionPerformed(java.awt.event.ActionEvent evt){
         ++num_parenteses;
-        apagar_btn.setEnabled(true);
+        //apagar_btn.setEnabled(true);
         fechaParentese_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
@@ -310,49 +311,49 @@ public class GUI_Argumento extends JFrame{
         String text = arg_textfield.getText();
         arg_textfield.setText(text+" )");
 
-        if(num_parenteses == 0) exec_btn.setEnabled(true);
+        //if(num_parenteses == 0) exec_btn.setEnabled(true);
 
     }
 
     private void p_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableProposicoes();
-        enableConectivos();
-        not_btn.setEnabled(false);
-        apagar_btn.setEnabled(true);
-        abreParentese_btn.setEnabled(false);
+        //disableProposicoes();
+        //enableConectivos();
+        //not_btn.setEnabled(false);
+        //apagar_btn.setEnabled(true);
+        //abreParentese_btn.setEnabled(false);
 
         String text = arg_textfield.getText();
         arg_textfield.setText(text+" p");
     }
 
     private void q_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableProposicoes();
-        enableConectivos();
-        not_btn.setEnabled(false);
-        apagar_btn.setEnabled(true);
-        abreParentese_btn.setEnabled(false);
+        //disableProposicoes();
+        //enableConectivos();
+        //not_btn.setEnabled(false);
+        //apagar_btn.setEnabled(true);
+        //abreParentese_btn.setEnabled(false);
 
         String text = arg_textfield.getText();
         arg_textfield.setText(text+" q");
     }
 
     private void r_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableProposicoes();
-        enableConectivos();
-        not_btn.setEnabled(false);
-        apagar_btn.setEnabled(true);
-        abreParentese_btn.setEnabled(false);
+        //disableProposicoes();
+        //enableConectivos();
+        //not_btn.setEnabled(false);
+        //apagar_btn.setEnabled(true);
+        //abreParentese_btn.setEnabled(false);
 
         String text = arg_textfield.getText();
         arg_textfield.setText(text+" r");
     }
 
     private void t_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableProposicoes();
-        enableConectivos();
-        not_btn.setEnabled(false);
-        apagar_btn.setEnabled(true);
-        abreParentese_btn.setEnabled(false);
+        //disableProposicoes();
+        //enableConectivos();
+        //not_btn.setEnabled(false);
+        //apagar_btn.setEnabled(true);
+        //abreParentese_btn.setEnabled(false);
 
         String text = arg_textfield.getText();
         arg_textfield.setText(text+" t");
@@ -360,60 +361,60 @@ public class GUI_Argumento extends JFrame{
 
     //Conectivos
     private void not_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        not_btn.setEnabled(false);
-        apagar_btn.setEnabled(true);
+        //not_btn.setEnabled(false);
+        //apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
         arg_textfield.setText(text+" ~");
     }
 
     private void disj_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableConectivos();
-        enableProposicoes();
-        not_btn.setEnabled(true);
-        apagar_btn.setEnabled(true);
+        //disableConectivos();
+        //enableProposicoes();
+        //not_btn.setEnabled(true);
+        //apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" or");
+        arg_textfield.setText(text+" "+Conectivo.DISJUNCAO.toString());
     }
     private void conj_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableConectivos();
-        enableProposicoes();
-        not_btn.setEnabled(true);
-        apagar_btn.setEnabled(true);
+        //disableConectivos();
+        //enableProposicoes();
+        //not_btn.setEnabled(true);
+        //apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" and");
+        arg_textfield.setText(text+" "+Conectivo.CONJUNCAO.toString());
     }
 
     private void disjXclusive_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableConectivos();
-        enableProposicoes();
-        not_btn.setEnabled(true);
-        apagar_btn.setEnabled(true);
+        //disableConectivos();
+        //enableProposicoes();
+        //not_btn.setEnabled(true);
+        //apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" xor");
+        arg_textfield.setText(text+" "+Conectivo.DISJUNCAO_EXCLUSIVA.toString());
     }
 
     private void imp_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableConectivos();
-        enableProposicoes();
-        not_btn.setEnabled(true);
-        apagar_btn.setEnabled(true);
+        //disableConectivos();
+        //enableProposicoes();
+        //not_btn.setEnabled(true);
+        //apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" if_then");
+        arg_textfield.setText(text+" " + Conectivo.IMPLICACAO.toString());
     }
 
     private void equiv_btnActionPerformed(java.awt.event.ActionEvent evt) {
-        disableConectivos();
-        enableProposicoes();
-        not_btn.setEnabled(true);
-        apagar_btn.setEnabled(true);
+        //disableConectivos();
+        //enableProposicoes();
+        //not_btn.setEnabled(true);
+        //apagar_btn.setEnabled(true);
 
         String text = arg_textfield.getText();
-        arg_textfield.setText(text+" only_if");
+        arg_textfield.setText(text+" "+Conectivo.EQUIVALENCIA.toString());
     }
 
     //Diversos
@@ -428,17 +429,17 @@ public class GUI_Argumento extends JFrame{
                 case 'q':
                 case 'r':
                 case 't':
-                    enableProposicoes();
-                    disableConectivos();
+                    //enableProposicoes();
+                    //disableConectivos();
                     if(text.length()>2 && text.toCharArray()[text.length()-3] == '~') {
-                        not_btn.setEnabled(false);
+                        //not_btn.setEnabled(false);
                     }else{
-                        not_btn.setEnabled(true);
+                        //not_btn.setEnabled(true);
                     }
                     break;
 
                 case '~':
-                    not_btn.setEnabled(true);
+                    //not_btn.setEnabled(true);
                     break;
                 case')':
                     ++num_parenteses;
@@ -448,9 +449,9 @@ public class GUI_Argumento extends JFrame{
                     --num_parenteses;
                     break;
                 default:
-                    enableConectivos();
-                    disableProposicoes();
-                    not_btn.setEnabled(false);
+                    //enableConectivos();
+                    //disableProposicoes();
+                    //not_btn.setEnabled(false);
 
             }
         }
@@ -470,7 +471,7 @@ public class GUI_Argumento extends JFrame{
         arg_textfield.setText(text);
 
         if (text.length() == 0) {
-            apagar_btn.setEnabled(false);
+            //apagar_btn.setEnabled(false);
         }
 
 
@@ -484,9 +485,9 @@ public class GUI_Argumento extends JFrame{
         arg_textfield.setText("");
         Solver.clear();
 
-        enableProposicoes();
-        disableConectivos();
-        not_btn.setEnabled(true);
+        //enableProposicoes();
+        //disableConectivos();
+        //not_btn.setEnabled(true);
 
         System.out.println();
         System.out.println();
@@ -507,7 +508,7 @@ public class GUI_Argumento extends JFrame{
         });
     }
 
-    private void enableConectivos(){
+    /*private void enableConectivos(){
         conj_btn.setEnabled(true);
         disj_btn.setEnabled(true);
         disjXclusive_btn.setEnabled(true);
@@ -551,5 +552,5 @@ public class GUI_Argumento extends JFrame{
             exec_btn.setEnabled(false);
         }
         abreParentese_btn.setEnabled(false);
-    }
+    }*/
 }
