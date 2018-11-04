@@ -5,7 +5,7 @@ import proposicao.ArgumentoComposto;
 import proposicao.ArgumentoSimples;
 import util.Solver;
 
-import java.util.Arrays;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -60,7 +60,7 @@ public class GUI_Tabela  extends javax.swing.JFrame {
         }
 
     public void geraTabela(){
-
+        int pos_final=0;
         String[] args = GUI_Argumento.argumento.substring(2, GUI_Argumento.argumento.length()-2).split(" ");
 
         Object[][] resp = new Object[Solver.respostaFinal.length][args.length];
@@ -90,6 +90,7 @@ public class GUI_Tabela  extends javax.swing.JFrame {
 
                         }
                     }
+
                     if(key.not && args[il].equals("~")){
                             for (int j = 0; j < resp.length; j++) {
 
@@ -105,9 +106,15 @@ public class GUI_Tabela  extends javax.swing.JFrame {
             }else{
                 for (int il=0; il<args.length; il++) {
                     if(args[il].equals(((ArgumentoComposto) key).getConec())){
+
+                        boolean[] resp_nova = respostas.get(key);
+
+                        //pega posicao da resposta final
+                        if(resp_nova == Solver.respostaFinal) pos_final=il;
+
                         for (int j = 0; j < resp.length; j++) {
                             if(resp[j][il] == null){
-                                resp[j][il] = respostas.get(key)[j];
+                                resp[j][il] = resp_nova[j];
                             }else break; //caso já tenha inserido neste local
                         }
                     }
@@ -115,6 +122,8 @@ public class GUI_Tabela  extends javax.swing.JFrame {
                 }
             }
         }
+
+        tabela_verdade = new ColorGUI(pos_final);
 
         tabela_verdade.setModel(new javax.swing.table.DefaultTableModel(
                 resp,

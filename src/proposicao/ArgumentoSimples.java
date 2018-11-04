@@ -57,6 +57,8 @@ public class ArgumentoSimples extends Argumento {
         int numConsecutivos = b.length / (int) (Math.pow(2, id));
         int j = 0;
 
+        if(numConsecutivos<=0) numConsecutivos=1;
+
         for (int i = 0; i < (b.length / numConsecutivos) / 2; i++) {
             for (int k = j; k < j + numConsecutivos; k++)
                 b[k] = !not;
